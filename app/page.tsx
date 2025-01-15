@@ -1,9 +1,15 @@
 import Image from "next/image";
+import Header from '@/components/Header';
+import Carousel from "@/components/Elements/Carousel";
+import Footer from "@/components/Footer";
+import Slider from "@/components/Elements/Slider"
+import Reviews from "@/components/Elements/Reviews";
+import Logo from "../public/logo.png";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div>
+      {/* <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -95,7 +101,46 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
-      </footer>
+      </footer> */}
+      <Header />
+      <div className="bg-[#fff3e9] lg:pt-[60px] xs:pt-[50px] lg:pb-[60px] xs:pb-[50px]">
+        <h1 className="font-lato lg:text-[40px] xs:text-[22px] font-bold lg:ml-[90px] bg-gradient-to-b from-orange-400 to-orange-600 bg-clip-text text-transparent lg:leading-[55px] xs:text-center lg:text-left">File Your Taxes In Just 6 Minutes <br /> With Our Qualified Consultants!</h1>
+        <h3 className="font-lato lg:text-left lg:ml-[90px] font-bold lg:text-[30px] xs:text-[20px] xs:text-center xs:mt-1">Now available in just Rs. 3000/-</h3>
+        <p className="font-lato lg:ml-[90px] text-[16px] lg:w-[600px] mt-4 xs:text-center xs:px-3">Befiler goes beyond tax filing! We also help with all your business registration, sales tax filing, trademark registration, and LLC registration in the USA — all in one place.</p>
+        <button className="font-lato font-bold bg-[#f18021] px-[50px] py-2 mt-5 rounded-lg text-[#fff] lg:ml-[90px] xs:mx-auto xs:block transform transition-transform duration-500 hover:scale-105">
+          File now
+        </button>
+      </div>
+      <div className="lg:mt-[60px] xs:mt-[40px]">
+        <h2 className="text-center mt-5 lg:text-[32px] xs:text-[24px] font-bold">Our Partners & Collaborators</h2>
+        <div className="lg:mt-[60px] xs:mt-[40px] flex justify-center bg-white rounded-lg">
+          <Carousel />
+        </div>
+
+        {/* <div></div> */}
+      </div>
+      <div className="lg:mt-[60px] xs:mt-[40px]">
+        <h2 className="text-center lg:text-[32px] xs:text-[24px] font-bold mt-[20px]">
+          Popular Products
+        </h2>
+        <div className="lg:mt-[0px] xs:mt-[40px] px-4">
+          <Slider />
+        </div>
+      </div>
+
+      <div className="bg-[#fff3e9] lg:mt-[120px] xs:mt-[60px] flex lg:flex-row xs:flex-col lg:justify-between xs:justify-center xs:items-center lg:items-start lg:mx-10 xs:mx-5 py-10 rounded-xl">
+        <div className="">
+          <h2 className="lg:text-[32px] xs:text-[28px] font-lato font-bold lg:mt-[80px] xs:mt-[30px] lg:ml-10 xs:ml-0 lg:text-left xs:text-center">Trusted by <span className="text-[#f18021]">hundreds of clients</span></h2>
+          <p className="lg:text-left font-lato lg:mt-10 xs:mt-5 lg:pl-10 lg:pr-[250px] text-[18px] xs:text-center xs:px-5 lg:px-0">With over <span className="font-bold font-lato">30 years of expertise</span>, we provide unparalleled taxation services in Pakistan, ensuring compliance and maximizing savings for businesses and individuals. Our seasoned professionals specialize in tax planning, filing, and resolving complex tax matters efficiently. Trust us to simplify your financial journey with personalized solutions and unmatched dedication.</p>
+        </div>
+      
+        <div className="border lg:w-[300px] xs:w-[255px] h-auto lg:mr-[100px] xs:mr-0 xs:mt-10 lg:mt-0">
+         <Reviews />
+        </div>
+      </div>
+      <div className="lg:mt-[120px] xs:mt-[60px]">
+        <Footer />
+      </div>
     </div>
   );
 }
