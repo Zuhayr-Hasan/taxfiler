@@ -1,19 +1,18 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore'; 
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDxB_C56y13ThqAg2PfNHaCJhGZp5NmfGQ",
-  authDomain: "zubairtalibandcompany.firebaseapp.com",
-  projectId: "zubairtalibandcompany",
-  storageBucket: "zubairtalibandcompany.firebasestorage.app",
-  messagingSenderId: "375628568187",
-  appId: "1:375628568187:web:f510a450007dd5d41af4de"
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);  // Initialize Firestore
+const db = getFirestore(app);
 
-// Export both auth and db
 export { auth, db };
