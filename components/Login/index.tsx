@@ -100,12 +100,12 @@ function Index() {
 
             {/* Submit Button */}
             <div className="mt-3 w-full">
-            <button
-                type="submit"
-                className="w-full text-[#f0f0f0] font-bold rounded-lg py-2 bg-[#f18021] transform transition-transform duration-500 hover:scale-105"
-                >
-                {loading ? <BeatLoader size={10} color="#f0f0f0" /> : "Login"}
-                </button>
+              <button
+                  type="submit"
+                  className="w-full text-[#f0f0f0] font-bold rounded-lg py-2 bg-[#f18021] transform transition-transform duration-500 hover:scale-105"
+                  >
+                  {loading ? <BeatLoader size={10} color="#f0f0f0" /> : "Login"}
+              </button>
             </div>
           </form>
         </div>
