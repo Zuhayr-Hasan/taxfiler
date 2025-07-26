@@ -4,6 +4,7 @@ import { useState,  useEffect } from "react";
 import { db, auth } from "@/firebase/firebase";
 import { doc, setDoc, getDoc  } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { User } from 'firebase/auth';
 import Header from "../Header/index";
 import { onAuthStateChanged } from "firebase/auth";
 import { FiUser } from "react-icons/fi"
@@ -43,7 +44,6 @@ interface FormData {
 }
 
 export default function Index() {
-  const [user, setUser] = useState(null);
   const [form, setForm] = useState<FormData>({
     fullName: "",
     fatherName: "",
@@ -94,9 +94,9 @@ export default function Index() {
   //   }
   // })
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser: any) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser: User | null) => {
       if (currentUser) {
-        setUser(currentUser);
+        // setUser(currentUser); // removed
 
         const userRef = doc(db, "credentials", currentUser.uid);
         const docSnap = await getDoc(userRef);
@@ -268,7 +268,7 @@ export default function Index() {
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg mt-10">
         <h2 className="text-2xl font-bold text-gray-800">Personal Tax Filing — 2025</h2>
         <p className="text-sm text-gray-600 mt-[10px]">
-          Fill in as much information as you can. If you're unsure, leave it blank — our tax expert will follow up with you.
+          Fill in as much information as you can. If you&apos;re unsure, leave it blank — our tax expert will follow up with you.
         </p>
 
         {/* Section: Personal Details */}
@@ -280,7 +280,7 @@ export default function Index() {
               <input name="fullName" placeholder="Ahmed Ali" value={form.fullName} onChange={handleInput} className="input bg-[#fafafa] rounded-lg py-2 px-3 w-full text-[14px]" />
             </div>
             <div>
-              <label className="block text-sm text-gray-700 mb-1">Father's Name</label>
+              <label className="block text-sm text-gray-700 mb-1">Father&apos;s Name</label>
               <input name="fatherName" placeholder="Amir Ali" value={form.fatherName} onChange={handleInput} className="input bg-[#fafafa] rounded-lg py-2 px-3 w-full text-[14px]" />
             </div>
             <div>
@@ -372,7 +372,7 @@ export default function Index() {
               <input name="medicalExpenses" type="number" placeholder="110000" value={form.medicalExpenses} onChange={handleInput} className="input bg-[#fafafa] rounded-lg py-2 px-3 w-full text-[14px]" />
             </div>
             <div>
-              <label className="block text-sm text-gray-700 mb-1">Children's Education (PKR)</label>
+              <label className="block text-sm text-gray-700 mb-1">Children&apos;s Education (PKR)</label>
               <input name="educationExpenses" type="number" placeholder="220000" value={form.educationExpenses} onChange={handleInput} className="input bg-[#fafafa] rounded-lg py-2 px-3 w-full text-[14px]" />
             </div>
           </div>

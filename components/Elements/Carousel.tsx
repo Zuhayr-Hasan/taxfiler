@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper/modules";
 import '../../styles/slider.css'
@@ -13,11 +12,6 @@ import "swiper/css/scrollbar";
 const cleintsData = ["Nestle", "UBL", "Imtiaz", "ChenOne", "ECS", "Ramada", "Google", "Melt9"];
 
 function Carousel() {
-  const imageUrl =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/800px-Google_%22G%22_logo.svg.png";
-  const imageUrlTwo =
-    "https://1000logos.net/wp-content/uploads/2017/02/Apple-Logosu.png";
-
   return (
     <Swiper
       className="flex justify-center swiper-container swiper-container-free-mode"

@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
-import { useRouter } from "next/navigation";
-import Header from "../Header/index";
 import { BeatLoader } from "react-spinners";
 import { MdEmail } from "react-icons/md";
 
@@ -12,7 +10,6 @@ function Index() {
   const [form, setForm] = useState({
     email: "",
   });
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +20,7 @@ function Index() {
     }));
   };
 
-  const handleForgetPassword = async (e: any) => {
+  const handleForgetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 

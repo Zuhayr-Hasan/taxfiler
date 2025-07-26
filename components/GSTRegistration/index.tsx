@@ -6,7 +6,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 as uuid } from "uuid";
 
-export default function index() {
+function GSTRegistration() {
   const [form, setForm] = useState({
     fullName: "",
     cnic: "",
@@ -132,3 +132,4 @@ export default function index() {
     </div>
   );
 }
+export default GSTRegistration;

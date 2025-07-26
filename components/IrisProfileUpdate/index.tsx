@@ -23,7 +23,6 @@ function FormPage() {
   
   useEffect(() => {
     const auth = getAuth();
-    const user = auth.currentUser;
 
     // if (!user) {
     //   console.error("User not authenticated!");

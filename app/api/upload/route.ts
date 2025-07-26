@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       bufferToStream(buffer).pipe(stream);
     });
 
-    return NextResponse.json({ url: (result as any).secure_url });
+    return NextResponse.json({ url: (result as { secure_url: string }).secure_url });
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: 'Upload failed' }, { status: 500 });

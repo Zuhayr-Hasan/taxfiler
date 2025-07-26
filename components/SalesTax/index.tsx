@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { services, faq } from '../../utils/constant';
+import { faq } from '../../utils/constant';
 import Header from '../Header';
 import Footer from '../Footer';
 import Carousel from '../Elements/Carousel';

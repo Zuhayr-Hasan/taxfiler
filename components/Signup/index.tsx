@@ -2,10 +2,8 @@
 
 import React, { useState } from "react";
 import Header from "../Header/index";
-import Link from "next/link";
 import { auth } from "../../firebase/firebase"; // Firebase auth object
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { db } from "../../firebase/firebase"; // Firestore instance
 import { doc, setDoc } from "firebase/firestore"; // Firestore methods
 import { useRouter } from "next/navigation";
@@ -80,10 +78,6 @@ function Index() {
   });
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  const handleRoute = () => {
-    router.push("/reset");
-  }
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

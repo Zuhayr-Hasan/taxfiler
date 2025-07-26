@@ -7,9 +7,9 @@ import { getAuth } from 'firebase/auth';
 import { db, auth } from '@/firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { HiArrowRight } from 'react-icons/hi';
+import { User } from 'firebase/auth';
 
-export default function index() {
-  const [user, setUser] = useState(null);
+function FamilyTaxFiling() {
   const [formData, setFormData] = useState({
     fullName: '',
     cnic: '',
@@ -37,9 +37,9 @@ export default function index() {
   });
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser: any) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser: User | null) => {
       if (currentUser) {
-        setUser(currentUser);
+        // setUser(currentUser); // Removed as per edit hint
 
         const userRef = doc(db, "credentials", currentUser.uid);
         const docSnap = await getDoc(userRef);
@@ -79,7 +79,7 @@ export default function index() {
     return () => unsubscribe(); // Clean up the listener
   }, []);
   
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -112,7 +112,7 @@ export default function index() {
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Submitted:', formData);
 
@@ -331,3 +331,4 @@ export default function index() {
     </div>
   );
 }
+export default FamilyTaxFiling;

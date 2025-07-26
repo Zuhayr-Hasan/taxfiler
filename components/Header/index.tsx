@@ -3,12 +3,11 @@
 import React, { useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
-import Login from "../Login/index";
 import Logo from "../../public/logo.png";
 import { usePathname, useRouter } from 'next/navigation';
 import { HiLogout } from "react-icons/hi";
 
-function index() {
+function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
@@ -135,4 +134,4 @@ function index() {
     );
 }
 
-export default index
+export default Header;

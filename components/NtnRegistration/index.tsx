@@ -6,6 +6,7 @@ import Header from '../Header/index';
 import { getAuth } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
+import Image from 'next/image';
 
 function Index() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -161,12 +162,7 @@ function Index() {
           {images.front && (
             <div className="relative">
               <p className="text-center font-semibold text-sm bg-[#eee] mb-1 rounded-lg text-[#444]">CNIC Front</p>
-              <img 
-                src={URL.createObjectURL(images.front)} 
-                alt="CNIC Front"
-                width="200px"
-                height="200px" 
-              />
+              <Image src={URL.createObjectURL(images.front)} alt="Front CNIC" width={200} height={120} />
               <button
                 type="button"
                 onClick={() => handleRemove('front')}
@@ -179,12 +175,7 @@ function Index() {
           {images.back && (
             <div className="relative">
               <p className="text-center font-semibold text-sm bg-[#eee] mb-1 rounded-lg text-[#444]">CNIC Back</p>
-              <img 
-                src={URL.createObjectURL(images.back)} 
-                alt="CNIC Back"
-                width="200px"
-                height="200px"  
-              />
+              <Image src={URL.createObjectURL(images.back)} alt="Back CNIC" width={200} height={120} />
               <button
                 type="button"
                 onClick={() => handleRemove('back')}

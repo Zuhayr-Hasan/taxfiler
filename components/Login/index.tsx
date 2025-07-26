@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { useRouter } from "next/navigation";
-import Header from "../Header/index";
 import Link from "next/link";
 import { BeatLoader } from "react-spinners";
 import { MdEmail, MdLock } from "react-icons/md";
@@ -29,7 +28,7 @@ function Index() {
     }));
   };
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
