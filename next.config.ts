@@ -4,6 +4,12 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     domains: ['upload.wikimedia.org', '1000logos.net', "static.vecteezy.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
     // domains: ['1000logos.net']
   },
 };

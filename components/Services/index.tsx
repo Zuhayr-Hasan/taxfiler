@@ -14,7 +14,7 @@ function Index() {
           Our business services
         </h1>
         <p className="text-[16px] md:text-[18px] mt-4 lg:w-[700px]">
-          Registering a business can be a quite stressful. Worry not! Get expert assistance on how and which business structure to select and start your entrepreneurial journey with a bang!
+          Starting a business can feel overwhelming — but don’t worry! Get expert guidance on choosing the right business structure and kickstart your entrepreneurial journey with confidence.
         </p>
 
         {/* Service Cards */}

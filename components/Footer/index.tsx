@@ -70,7 +70,7 @@ function Footer() {
         </div>
 
         {/* Social Media */}
-        <div className="mt-10 flex justify-center space-x-4">
+        {/* <div className="mt-10 flex justify-center space-x-4">
           <a href="#" className="text-gray-200 hover:text-white">
             <FaFacebook size={24} />
           </a>
@@ -83,7 +83,7 @@ function Footer() {
           <a href="#" className="text-gray-200 hover:text-white">
             <FaLinkedin size={24} />
           </a>
-        </div>
+        </div> */}
 
         {/* Footer Bottom */}
         <div className="font-bold mt-10 border-t border-[#eee] pt-6 text-center text-sm text-gray-200">

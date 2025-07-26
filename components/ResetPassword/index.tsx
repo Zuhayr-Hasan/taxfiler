@@ -38,8 +38,7 @@ function Index() {
   };
 
   return (
-    <div>
-      <Header />
+    <div className="bg-[#fafafa]">
       <div className="flex flex-col items-center bg-[white] mt-[160px]">
         <div className="min-w-[400px]">
           {/* <h3 className="text-[30px] text-[#f18021] font-bold text-center">

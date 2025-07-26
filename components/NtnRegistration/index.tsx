@@ -1,15 +1,47 @@
 "use client"
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { IoCloudUpload, IoCloseCircle } from "react-icons/io5";
 import Header from '../Header/index';
+import { getAuth } from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
 
 function Index() {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [images, setImages] = useState<{ front: string | null; back: string | null }>({
+  const [images, setImages] = useState<{ front: File | null; back: File | null }>({
     front: null,
     back: null
   });
+  const [cnicUploaded, setCnicUploaded] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hasMounted) return;
+
+    const fetchData = async () => {
+      const user = getAuth().currentUser;
+      if (!user) {
+        setLoading(false);
+        return;
+      }
+
+      const docRef = doc(db, "credentials", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setCnicUploaded(true);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [hasMounted]);
 
   const handleIconClick = () => {
     if (images.front && images.back) {
@@ -24,7 +56,7 @@ function Index() {
     if (!file) return;
 
     const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    const maxSize = 2 * 1024 * 1024; // 2MB
+    const maxSize = 2 * 1024 * 1024;
 
     if (!validTypes.includes(file.type)) {
       alert("Only JPG, JPEG, or PNG files are allowed.");
@@ -36,15 +68,12 @@ function Index() {
       return;
     }
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      if (!images.front) {
-        setImages((prev) => ({ ...prev, front: reader.result as string }));
-      } else if (!images.back) {
-        setImages((prev) => ({ ...prev, back: reader.result as string }));
-      }
-    };
-    reader.readAsDataURL(file);
+    if (!images.front) {
+      setImages((prev) => ({ ...prev, front: file }));
+    } else if (!images.back) {
+      setImages((prev) => ({ ...prev, back: file }));
+    }
+
     event.target.value = '';
   };
 
@@ -53,6 +82,49 @@ function Index() {
   };
 
   const isReadyToSubmit = images.front && images.back;
+
+  const uploadToCloudinary = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!res.ok) throw new Error('Upload failed');
+
+    const data = await res.json();
+    return data.url;
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (!images.front || !images.back) return;
+
+      const frontUrl = await uploadToCloudinary(images.front);
+      const backUrl = await uploadToCloudinary(images.back);
+
+      const user = getAuth().currentUser;
+      if (!user) {
+        alert("User not authenticated");
+        return;
+      }
+
+      await setDoc(doc(db, "credentials", user.uid), {
+        cnicFront: frontUrl,
+        cnicBack: backUrl,
+        // uploadedAt: new Date(),
+      }, { merge: true });
+
+      alert("Uploaded successfully!");
+    } catch (err) {
+      console.error(err);
+      alert("Upload failed.");
+    }
+  };
+
+  if (!hasMounted) return null;
 
   return (
     <div>
@@ -64,15 +136,19 @@ function Index() {
           Please upload your CNIC front & back. Only JPG, JPEG, PNG formats under 2MB are allowed.
         </p>
 
-        {/* Upload icon */}
-        <div
-          className={`mt-8 cursor-pointer ${images.front && images.back ? 'opacity-40 pointer-events-none' : ''}`}
-          onClick={handleIconClick}
-        >
-          <IoCloudUpload size={150} color="#ffcca2" />
-        </div>
+        {!loading && !cnicUploaded && (
+          <div
+            className={`mt-8 cursor-pointer ${images.front && images.back ? 'opacity-40 pointer-events-none' : ''}`}
+            onClick={handleIconClick}
+          >
+            <IoCloudUpload size={150} color="#ffcca2" />
+          </div>
+        )}
 
-        {/* Hidden input */}
+        {!loading && cnicUploaded && (
+          <p className="mt-6 text-green-700 font-semibold text-lg">✅ You have already uploaded your CNIC.</p>
+        )}
+
         <input
           type="file"
           accept="image/jpeg, image/png"
@@ -81,15 +157,15 @@ function Index() {
           onChange={handleFileChange}
         />
 
-        {/* Preview section */}
         <div className="flex gap-5 mt-6">
           {images.front && (
             <div className="relative">
-              <p className="text-center font-semibold">Front</p>
-              <img
-                src={images.front}
+              <p className="text-center font-semibold text-sm bg-[#eee] mb-1 rounded-lg text-[#444]">CNIC Front</p>
+              <img 
+                src={URL.createObjectURL(images.front)} 
                 alt="CNIC Front"
-                className="w-[150px] h-[100px] object-cover rounded-md"
+                width="200px"
+                height="200px" 
               />
               <button
                 type="button"
@@ -102,11 +178,12 @@ function Index() {
           )}
           {images.back && (
             <div className="relative">
-              <p className="text-center font-semibold">Back</p>
-              <img
-                src={images.back}
+              <p className="text-center font-semibold text-sm bg-[#eee] mb-1 rounded-lg text-[#444]">CNIC Back</p>
+              <img 
+                src={URL.createObjectURL(images.back)} 
                 alt="CNIC Back"
-                className="w-[150px] h-[100px] object-cover rounded-md"
+                width="200px"
+                height="200px"  
               />
               <button
                 type="button"
@@ -119,11 +196,11 @@ function Index() {
           )}
         </div>
 
-        {/* Submit Button: Only show if both images uploaded */}
         {isReadyToSubmit && (
           <button
             type="button"
             className="mt-[60px] text-md py-3 px-[100px] rounded-3xl bg-[#f18021] hover:bg-orange-600 text-white transition-all"
+            onClick={handleSubmit}
           >
             Submit
           </button>

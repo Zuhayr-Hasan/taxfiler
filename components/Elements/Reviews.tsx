@@ -22,37 +22,37 @@ const reviewsData = [
     {
         dp: "https://static.vecteezy.com/system/resources/thumbnails/004/899/680/small_2x/beautiful-blonde-woman-with-makeup-avatar-for-a-beauty-salon-illustration-in-the-cartoon-style-vector.jpg",
         review: "It's a great service to deal with the FBR issues. Staff is very cooperative, helpful, and responds quickly.",
-        name: "@qasarabbas",
+        name: "@ahmed",
         color: "#004040"
     },
     {
         dp: "https://static.vecteezy.com/system/resources/thumbnails/004/899/680/small_2x/beautiful-blonde-woman-with-makeup-avatar-for-a-beauty-salon-illustration-in-the-cartoon-style-vector.jpg",
         review: "I've been using their taxation services for years, and their professionalism is unmatched. They handle everything seamlessly, saving me time and money. Truly the best in Pakistan!",
-        name: "@qasarabbas",
+        name: "@shafique",
         color: "orange"
     },
     {
         dp: "https://static.vecteezy.com/system/resources/thumbnails/004/899/680/small_2x/beautiful-blonde-woman-with-makeup-avatar-for-a-beauty-salon-illustration-in-the-cartoon-style-vector.jpg",
         review: "It's a great service to deal with the FBR issues. Staff is very cooperative, helpful, and responds quickly.",
-        name: "@qasarabbas",
+        name: "@ayesha",
         color: "#002147"
     },
     {
         dp: "https://static.vecteezy.com/system/resources/thumbnails/004/899/680/small_2x/beautiful-blonde-woman-with-makeup-avatar-for-a-beauty-salon-illustration-in-the-cartoon-style-vector.jpg",
         review: "I was dreading tax season, but their team made it effortless. They explained everything clearly and ensured compliance without any hassle.",
-        name: "@qasarabbas",
+        name: "@hammad",
         color: "#004040"
     },
     {
         dp: "https://static.vecteezy.com/system/resources/thumbnails/004/899/680/small_2x/beautiful-blonde-woman-with-makeup-avatar-for-a-beauty-salon-illustration-in-the-cartoon-style-vector.jpg",
         review: "It's a great service to deal with the FBR issues. Staff is very cooperative, helpful, and responds quickly.",
-        name: "@qasarabbas",
+        name: "@azhar",
         color: "#002147"
     },
     {
         dp: "https://static.vecteezy.com/system/resources/thumbnails/004/899/680/small_2x/beautiful-blonde-woman-with-makeup-avatar-for-a-beauty-salon-illustration-in-the-cartoon-style-vector.jpg",
         review: "They respond quickly and are incredibly efficient. Whether it’s tax filing or resolving queries, they’ve always been a step ahead.",
-        name: "@qasarabbas",
+        name: "@rafique",
         color: "purple"
     }
 ]
@@ -64,7 +64,7 @@ export default function Reviews() {
       grabCursor={true}
       modules={[EffectCards, Autoplay]}
       autoplay={{
-        delay: 3000, // Delay between slides in milliseconds (3 seconds)
+        delay: 1000, // Delay between slides in milliseconds (3 seconds)
         disableOnInteraction: false, // Continue autoplay even after user interaction
       }}
       className="mySwiper"

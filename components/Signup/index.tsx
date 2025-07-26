@@ -12,6 +12,56 @@ import { useRouter } from "next/navigation";
 import { BeatLoader } from "react-spinners";
 import { FiUser, FiMail, FiCreditCard, FiPhone, FiLock } from "react-icons/fi";
 
+// const inputFields = [
+//   {
+//     label: "Name",
+//     name: "name",
+//     type: "text",
+//     placeholder: "John Doe",
+//     icon: <FiUser />,
+//   },
+//   {
+//     label: "Email",
+//     name: "email",
+//     type: "email",
+//     placeholder: "someone@example.com",
+//     icon: <FiMail />,
+//     error: errors.email,
+//   },
+//   {
+//     label: "CNIC",
+//     name: "cnic",
+//     type: "text",
+//     placeholder: "00000-0000000-0",
+//     icon: <FiCreditCard />,
+//     error: errors.cnic,
+//   },
+//   {
+//     label: "Phone",
+//     name: "phone",
+//     type: "text",
+//     placeholder: "+920000000000",
+//     icon: <FiPhone />,
+//     error: errors.phone,
+//   },
+//   {
+//     label: "Password",
+//     name: "password",
+//     type: "password",
+//     placeholder: "********",
+//     icon: <FiLock />,
+//     error: errors.password,
+//   },
+//   {
+//     label: "Confirm Password",
+//     name: "confirmPassword",
+//     type: "password",
+//     placeholder: "********",
+//     icon: <FiLock />,
+//     error: errors.confirmPassword,
+//   },
+// ]
+
 function Index() {
   const [form, setForm] = useState({
     name: "",
@@ -30,6 +80,10 @@ function Index() {
   });
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const handleRoute = () => {
+    router.push("/reset");
+  }
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
